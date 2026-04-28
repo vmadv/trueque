@@ -138,6 +138,19 @@
   }
   @keyframes bounce { 0%,100% { transform:translateY(0); } 50% { transform:translateY(7px); } }
 
+  /* Cycle word animation */
+  .cycle-line { color: #fff; font-weight: 600; font-size: 1.05em; }
+  .cycle-wrap { display: inline-block; overflow: hidden; vertical-align: bottom; }
+  .cycle-word {
+    display: inline-block;
+    font-family: 'Lora', serif; font-style: italic; font-weight: 400;
+    color: var(--yellow); white-space: nowrap;
+    animation: cwIn .4s cubic-bezier(.22,1,.36,1) forwards;
+  }
+  .cycle-word.out { animation: cwOut .28s ease-in forwards; }
+  @keyframes cwIn  { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes cwOut { from { opacity:1; transform:translateY(0); }   to { opacity:0; transform:translateY(-18px); } }
+
   /* SECTIONS */
   section { padding: 96px 24px; }
   .container { max-width: 1100px; margin: 0 auto; }
@@ -425,7 +438,7 @@
   }
   .nav-cal-mobile:hover { border-color: rgba(255,255,255,.6); color: #fff; }
 
-  /* Tag toast */
+  /* Tag toast — desktop inline */
   .tag-toast {
     overflow: hidden; max-height: 0; opacity: 0; margin-bottom: 0;
     transition: max-height .35s ease, opacity .35s ease, padding .35s ease, margin .35s ease;
@@ -435,6 +448,17 @@
   .tag-toast.show { max-height: 72px; opacity: 1; padding: 11px 16px; margin-bottom: 10px; }
   .tag-toast-inner { display: flex; align-items: center; gap: 10px; line-height: 1.4; }
   .tag-toast-emoji { font-size: 1.4rem; flex-shrink: 0; }
+
+  /* Tag toast — mobile sticky bottom */
+  @media(max-width:768px) {
+    .tag-toast {
+      position: fixed; bottom: 20px; left: 16px; right: 16px; z-index: 150;
+      max-height: 0; border-radius: 14px; margin-bottom: 0;
+      background: #1a1a1a; border-color: rgba(245,200,0,.4); color: #f2f2f2;
+      box-shadow: 0 8px 32px rgba(0,0,0,.5);
+    }
+    .tag-toast.show { max-height: 80px; padding: 13px 16px; }
+  }
 
   /* Days selector */
   .days-selector { display: flex; gap: 12px; margin-top: 4px; }
@@ -523,7 +547,10 @@
   <div class="hero-content" style="z-index:2;">
     <div class="hero-badge">✦ Programa Trueque 2026</div>
     <h1 class="hero-title">Tu talento es tu<br><em>pasaporte a la naturaleza</em></h1>
-    <p class="hero-sub">Anima uno de nuestros campings con tu arte, tu clase o tu espectáculo. Nosotros ponemos el alojamiento, la naturaleza y el acompañante con el que podrás quedarte. Tú pones la magia.</p>
+    <p class="hero-sub">
+      <span class="cycle-line">Intercambia <span class="cycle-wrap"><span class="cycle-word" id="cycle-word">cantar en directo</span></span> por noches en Kampaoh.</span><br>
+      Nosotros ponemos el alojamiento, la naturaleza y el acompañante con el que podrás quedarte. Tú pones la magia.
+    </p>
     <div class="hero-btns">
       <a href="#formulario" class="btn-primary">Quiero participar</a>
       <a href="#concepto" class="btn-ghost">Cómo funciona</a>
@@ -954,7 +981,7 @@ function showTagToast(talent) {
   toast.classList.remove('show');
   requestAnimationFrame(() => requestAnimationFrame(() => {
     toast.classList.add('show');
-    toastTimer = setTimeout(() => toast.classList.remove('show'), 4000);
+    if (window.innerWidth > 768) toastTimer = setTimeout(() => toast.classList.remove('show'), 4000);
   }));
 }
 
@@ -974,6 +1001,8 @@ function showTagToast(talent) {
         selectedTalent = t;
         showTagToast(t);
         if(t.id==='otro') document.getElementById('otro-input-wrap').style.display='block';
+      } else {
+        document.getElementById('tag-toast').classList.remove('show');
       }
       document.getElementById('err-tags').classList.remove('show');
       updateDynamicLabels();
@@ -1148,6 +1177,22 @@ function submitForm(){
   document.getElementById('form-header').style.display='none';
   document.getElementById('form-success').classList.add('show');
 }
+
+/* Cycle word */
+(function(){
+  const words = ['cantar en directo','una clase de yoga','una clase de baile'];
+  let i = 0;
+  const el = document.getElementById('cycle-word');
+  if (!el) return;
+  setInterval(() => {
+    el.classList.add('out');
+    setTimeout(() => {
+      i = (i + 1) % words.length;
+      el.textContent = words[i];
+      el.classList.remove('out');
+    }, 280);
+  }, 3000);
+})();
 
 /* Pixel Trail */
 (function(){
