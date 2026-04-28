@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>Trueque Kampaoh — Tu talento, tu pasaporte a la naturaleza</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -67,7 +70,7 @@
   }
   .hero-bg-img {
     position: absolute; inset: 0;
-    background-image: url('682d2545-e4de-4a5d-9b6a-86aac6e059a5.png');
+    background-image: url('682d2545-e4de-4a5d-9b6a-86aac6e059a5.png?v=2');
     background-size: cover; background-position: center center;
     transform: scale(1.05);
     transition: transform 8s ease-out;
@@ -472,7 +475,7 @@
 <!-- NAV -->
 <nav id="navbar">
   <a href="#" class="nav-logo">
-    <img src="Sello-fondo_amarillo-13.png" alt="Kampaoh">
+    <img src="Sello-fondo_amarillo-13.png?v=2" alt="Kampaoh">
   </a>
   <div class="nav-links">
     <a href="actividades.html" class="nav-secondary">Calendario actividades</a>
@@ -550,7 +553,7 @@
 <!-- VISUAL SPLIT -->
 <div class="visual-split">
   <div class="vs-panel">
-    <div class="vs-bg" style="background-image:url('CRI07274.jpg')"></div>
+    <div class="vs-bg" style="background-image:url('CRI07274.jpg?v=2')"></div>
     <div class="vs-overlay"></div>
     <div class="vs-content">
       <span class="vs-tag">Yoga · Bienestar</span>
@@ -559,7 +562,7 @@
     </div>
   </div>
   <div class="vs-panel">
-    <div class="vs-bg" style="background-image:url('61f33d62a6fd39dca4b8413fe1560f4a.jpg'); background-position: center 70%;"></div>
+    <div class="vs-bg" style="background-image:url('61f33d62a6fd39dca4b8413fe1560f4a.jpg?v=2'); background-position: center 70%;"></div>
     <div class="vs-overlay"></div>
     <div class="vs-content">
       <span class="vs-tag">Música · Arte</span>
@@ -789,7 +792,7 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">
-    <img src="Sello-fondo_amarillo-13.png" alt="Kampaoh">
+    <img src="Sello-fondo_amarillo-13.png?v=2" alt="Kampaoh">
   </div>
   <p style="font-size:.88rem;max-width:440px;margin:0 auto 16px;">Camping, fácil y bonito. Más de 20 destinos en España, Portugal e Italia.</p>
   <div class="footer-links">
@@ -980,7 +983,7 @@ function updateDynamicLabels(){
   const g=document.getElementById('dest-grid');
   DESTINATIONS.forEach(d=>{
     const el=document.createElement('div'); el.className='dest-card';
-    const photoUrl = encodeURI(d.photo);
+    const photoUrl = encodeURI(d.photo) + '?v=2';
     el.innerHTML=`
       <div class="dest-img" style="background-image:url('${photoUrl}')">
         <span>${d.icon}</span>
