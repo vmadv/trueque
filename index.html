@@ -6,7 +6,7 @@
 <title>Trueque Kampaoh — Tu talento, tu pasaporte a la naturaleza</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100;200;300;400;500;600;700;800;900&family=Lora:ital@1&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg-0:        #000000;
@@ -32,8 +32,8 @@
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body { font-family: 'Inter', sans-serif; background: var(--bg-1); color: var(--text-1); overflow-x: hidden; }
-  h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.2; }
+  body { font-family: 'Geist', sans-serif; background: var(--bg-1); color: var(--text-1); overflow-x: hidden; }
+  h1, h2, h3 { font-family: 'Geist', sans-serif; line-height: 1.15; font-weight: 700; }
 
   /* NAV */
   nav {
@@ -53,7 +53,7 @@
   .nav-logo img:hover { transform: scale(1.05); }
   .nav-cta {
     background: var(--yellow); color: #000000; border: none; border-radius: 50px;
-    padding: 10px 24px; font-family: 'Inter', sans-serif; font-weight: 700; font-size: .88rem;
+    padding: 10px 24px; font-family: 'Geist', sans-serif; font-weight: 700; font-size: .88rem;
     cursor: pointer; transition: all .2s; text-decoration: none; letter-spacing: .2px;
   }
   .nav-cta:hover { background: var(--yellow-dark); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(245,200,0,.3); }
@@ -67,8 +67,8 @@
   }
   .hero-bg-img {
     position: absolute; inset: 0;
-    background-image: url('Tarifa-2024-Zona--03.jpg');
-    background-size: cover; background-position: center 30%;
+    background-image: url('682d2545-e4de-4a5d-9b6a-86aac6e059a5.png');
+    background-size: cover; background-position: center center;
     transform: scale(1.05);
     transition: transform 8s ease-out;
   }
@@ -101,12 +101,13 @@
   h1.hero-title {
     font-size: clamp(2.4rem, 6vw, 4.4rem); color: var(--text-1);
     margin-bottom: 24px; text-shadow: 0 2px 30px rgba(0,0,0,.5);
-    font-weight: 700;
+    font-weight: 800; letter-spacing: -.04em;
   }
-  h1.hero-title em { color: var(--yellow); font-style: italic; }
+  h1.hero-title em { color: var(--yellow); font-family: 'Lora', serif; font-style: italic; font-weight: 400; }
   .hero-sub {
     font-size: clamp(.95rem, 2vw, 1.15rem); color: rgba(240,237,230,.8);
-    max-width: 560px; margin: 0 auto 48px; line-height: 1.75; font-weight: 300;
+    max-width: 560px; margin: 0 auto 48px; line-height: 1.75; font-weight: 200;
+    letter-spacing: .01em;
   }
   .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
   .btn-primary {
@@ -143,8 +144,8 @@
     letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px;
   }
   .section-label::before { content: ''; width: 24px; height: 1.5px; background: var(--yellow); border-radius: 2px; opacity: .6; }
-  h2.section-title { font-size: clamp(1.8rem, 4vw, 2.8rem); color: var(--text-1); margin-bottom: 16px; }
-  .section-sub { font-size: 1rem; color: var(--text-2); line-height: 1.75; max-width: 580px; }
+  h2.section-title { font-size: clamp(1.8rem, 4vw, 2.8rem); color: var(--text-1); margin-bottom: 16px; font-weight: 800; letter-spacing: -.03em; }
+  .section-sub { font-size: 1rem; color: var(--text-2); line-height: 1.75; max-width: 580px; font-weight: 300; }
 
   /* CONCEPT */
   .concept { background: var(--bg-1); }
@@ -155,8 +156,8 @@
   }
   .concept-card:hover { transform: translateY(-6px); border-color: rgba(245,200,0,.2); box-shadow: 0 12px 40px rgba(0,0,0,.4); }
   .concept-icon { font-size: 2.4rem; margin-bottom: 20px; display: block; }
-  .concept-card h3 { font-size: 1.15rem; color: var(--text-1); margin-bottom: 12px; }
-  .concept-card p { color: var(--text-2); line-height: 1.75; font-size: .93rem; }
+  .concept-card h3 { font-size: 1.15rem; color: var(--text-1); margin-bottom: 12px; font-weight: 600; letter-spacing: -.02em; }
+  .concept-card p { color: var(--text-2); line-height: 1.75; font-size: .93rem; font-weight: 300; }
 
   /* VISUAL SPLIT */
   .visual-split { padding: 0; display: grid; grid-template-columns: 1fr 1fr; min-height: 520px; }
@@ -184,11 +185,12 @@
     padding: 5px 12px; border-radius: 4px; margin-bottom: 14px;
   }
   .vs-content h3 {
-    font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2.1rem);
-    color: #fff; line-height: 1.2; margin-bottom: 10px;
+    font-family: 'Geist', sans-serif; font-size: clamp(1.5rem, 3vw, 2.1rem);
+    color: #fff; line-height: 1.15; margin-bottom: 10px;
+    font-weight: 800; letter-spacing: -.03em;
     text-shadow: 0 2px 16px rgba(0,0,0,.4);
   }
-  .vs-content p { color: rgba(255,255,255,.75); font-size: .9rem; line-height: 1.6; max-width: 320px; }
+  .vs-content p { color: rgba(255,255,255,.75); font-size: .9rem; line-height: 1.6; max-width: 320px; font-weight: 300; }
 
   /* WHO */
   .who { background: var(--bg-2); }
@@ -196,15 +198,14 @@
   .profile-card {
     background: var(--bg-card); border: 1px solid var(--border);
     border-radius: var(--radius); padding: 24px 14px; text-align: center;
-    cursor: pointer; transition: all .25s;
+    cursor: default; transition: all .25s;
   }
-  .profile-card:hover, .profile-card.active {
+  .profile-card:hover {
     border-color: var(--yellow); background: rgba(245,200,0,.08);
     transform: translateY(-4px); box-shadow: 0 8px 24px rgba(245,200,0,.12);
   }
   .profile-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
   .profile-name { color: var(--text-2); font-size: .83rem; font-weight: 500; }
-  .profile-card.active .profile-name { color: var(--yellow); }
 
   /* HOW */
   .how { background: var(--bg-1); }
@@ -219,12 +220,12 @@
     width: 80px; height: 80px; border-radius: 50%;
     background: transparent; border: 2px solid var(--yellow);
     display: flex; align-items: center; justify-content: center;
-    font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--yellow);
+    font-family: 'Geist', sans-serif; font-size: 1.8rem; color: var(--yellow);
     margin: 0 auto 24px; position: relative; z-index: 1;
     box-shadow: 0 0 24px rgba(245,200,0,.15);
   }
-  .step h3 { font-size: 1.1rem; color: var(--text-1); margin-bottom: 12px; }
-  .step p { color: var(--text-2); font-size: .93rem; line-height: 1.75; }
+  .step h3 { font-size: 1.1rem; color: var(--text-1); margin-bottom: 12px; font-weight: 600; letter-spacing: -.02em; }
+  .step p { color: var(--text-2); font-size: .93rem; line-height: 1.75; font-weight: 300; }
 
   /* BENEFITS */
   .benefits { background: var(--bg-2); }
@@ -235,7 +236,7 @@
   }
   .benefit:hover { transform: translateY(-4px); border-color: rgba(245,200,0,.2); }
   .benefit-icon { font-size: 2.2rem; margin-bottom: 16px; display: block; }
-  .benefit h3 { font-size: .95rem; color: var(--text-1); margin-bottom: 8px; font-family: 'Inter', sans-serif; font-weight: 600; }
+  .benefit h3 { font-size: .95rem; color: var(--text-1); margin-bottom: 8px; font-family: 'Geist', sans-serif; font-weight: 600; }
   .benefit p { font-size: .85rem; color: var(--text-2); line-height: 1.65; }
 
   /* FORM SECTION */
@@ -285,7 +286,7 @@
 
   .form-input, .form-textarea {
     width: 100%; border: 1px solid #e0e0e0; border-radius: var(--radius-sm);
-    padding: 13px 15px; font-size: .93rem; font-family: 'Inter', sans-serif;
+    padding: 13px 15px; font-size: .93rem; font-family: 'Geist', sans-serif;
     color: #222222; background: #ffffff; transition: border-color .2s; outline: none;
   }
   .form-input::placeholder, .form-textarea::placeholder { color: #aaaaaa; }
@@ -304,7 +305,7 @@
     display: flex; align-items: center; justify-content: space-between;
     border-bottom: 1px solid #e0e0e0;
   }
-  .cal-header h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: #222; }
+  .cal-header h3 { font-family: 'Geist', sans-serif; font-size: 1.05rem; color: #222; }
   .cal-nav {
     background: transparent; border: 1px solid #e0e0e0; color: #666; cursor: pointer;
     width: 32px; height: 32px; border-radius: 50%;
@@ -344,16 +345,11 @@
   .dest-card:hover { transform: translateY(-3px); border-color: #bbb; box-shadow: 0 4px 16px rgba(0,0,0,.08); }
   .dest-card.selected { border-color: var(--yellow); box-shadow: 0 0 0 2px var(--yellow); }
   .dest-card.selected .dest-check { opacity: 1; transform: scale(1); }
-  .dest-img { height: 120px; display: flex; align-items: center; justify-content: center; font-size: 2.8rem; position: relative; }
-  .dest-img.cordoba   { background: linear-gradient(135deg, #3d2010, #6b3a1a); }
-  .dest-img.palmar    { background: linear-gradient(135deg, #0a2e40, #1a6b8a); }
-  .dest-img.icristina { background: linear-gradient(135deg, #05202e, #0a4f6e); }
-  .dest-img.cantabria { background: linear-gradient(135deg, #101c24, #1c3545); }
-  .dest-img.vigo      { background: linear-gradient(135deg, #082236, #1a4060); }
-  .dest-img.trafalgar { background: linear-gradient(135deg, #082030, #1a4a70); }
-  .dest-img.canos     { background: linear-gradient(135deg, #071a0d, #10391a); }
+  .dest-img { height: 140px; background-size: cover; background-position: center; position: relative; display: flex; align-items: flex-end; justify-content: flex-start; padding: 8px 10px; }
+  .dest-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(160deg, rgba(0,0,0,.15) 0%, rgba(0,0,0,.55) 100%); border-radius: 0; }
+  .dest-img span { position: relative; z-index: 1; font-size: 1.4rem; }
   .dest-body { padding: 14px 16px; }
-  .dest-body h3 { font-size: .9rem; color: #222; margin-bottom: 4px; font-family: 'Inter', sans-serif; font-weight: 600; }
+  .dest-body h3 { font-size: .9rem; color: #222; margin-bottom: 4px; font-family: 'Geist', sans-serif; font-weight: 600; }
   .dest-body p { font-size: .78rem; color: #888; }
   .dest-check {
     position: absolute; top: 10px; right: 10px; width: 28px; height: 28px;
@@ -408,11 +404,62 @@
   .footer-links { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin: 20px 0; font-size: .88rem; }
   .footer-copy { font-size: .78rem; }
 
+  /* Nav secondary */
+  .nav-links { display: flex; align-items: center; gap: 10px; }
+  .nav-secondary {
+    color: rgba(255,255,255,.75); font-size: .83rem; font-weight: 500;
+    text-decoration: none; padding: 9px 18px; border-radius: 50px;
+    border: 1px solid rgba(255,255,255,.22); transition: all .2s; white-space: nowrap;
+  }
+  .nav-secondary:hover { color: #fff; border-color: rgba(255,255,255,.55); background: rgba(255,255,255,.06); }
+  nav.scrolled .nav-secondary { border-color: rgba(255,255,255,.28); }
+
+  /* Tag toast */
+  .tag-toast {
+    overflow: hidden; max-height: 0; opacity: 0; margin-bottom: 0;
+    transition: max-height .35s ease, opacity .35s ease, padding .35s ease, margin .35s ease;
+    background: rgba(245,200,0,.08); border: 1px solid rgba(245,200,0,.28); border-radius: 12px;
+    padding: 0 16px; font-size: .88rem; color: #333;
+  }
+  .tag-toast.show { max-height: 72px; opacity: 1; padding: 11px 16px; margin-bottom: 10px; }
+  .tag-toast-inner { display: flex; align-items: center; gap: 10px; line-height: 1.4; }
+  .tag-toast-emoji { font-size: 1.4rem; flex-shrink: 0; }
+
+  /* Days selector */
+  .days-selector { display: flex; gap: 12px; margin-top: 4px; }
+  .day-opt {
+    flex: 1; padding: 16px 12px; border: 1.5px solid #e0e0e0; border-radius: var(--radius-sm);
+    text-align: center; cursor: pointer; transition: all .2s; background: #f8f8f8; user-select: none;
+  }
+  .day-opt:hover { border-color: var(--yellow); background: rgba(245,200,0,.06); }
+  .day-opt.selected { background: rgba(245,200,0,.12); border-color: var(--yellow); box-shadow: 0 0 0 1px var(--yellow); }
+  .day-opt .day-num { font-size: 1.5rem; font-weight: 800; color: #222; display: block; }
+  .day-opt .day-label { font-size: .77rem; color: #888; margin-top: 3px; }
+  .day-opt.selected .day-label { color: #555; }
+
+  /* Calendar max notice */
+  .cal-max-notice {
+    background: rgba(231,111,81,.08); border: 1px solid rgba(231,111,81,.3); border-radius: 8px;
+    padding: 10px 14px; font-size: .82rem; color: var(--orange); margin-top: 10px;
+    display: none;
+  }
+  .cal-max-notice.show { display: block; animation: fadeIn .3s; }
+
+  /* Dest availability badge */
+  .dest-avail-badge {
+    position: absolute; bottom: 8px; right: 8px; z-index: 3;
+    background: rgba(0,0,0,.55); color: rgba(255,255,255,.8);
+    font-size: .66rem; font-weight: 600; padding: 3px 7px; border-radius: 4px;
+    backdrop-filter: blur(4px); letter-spacing: .3px; text-transform: uppercase;
+  }
+
   @media(max-width:768px) {
     nav { padding: 14px 20px; }
+    .nav-secondary { display: none; }
     section { padding: 64px 20px; }
     .profiles-grid { grid-template-columns: repeat(3, 1fr); }
     .dest-grid { grid-template-columns: 1fr 1fr; }
+    .hero-bg-img { background-position: 72% 45% !important; }
   }
   @media(max-width:480px) {
     .profiles-grid { grid-template-columns: repeat(2, 1fr); }
@@ -427,21 +474,40 @@
   <a href="#" class="nav-logo">
     <img src="Sello-fondo_amarillo-13.png" alt="Kampaoh">
   </a>
-  <a href="#formulario" class="nav-cta">Solicitar trueque</a>
+  <div class="nav-links">
+    <a href="actividades.html" class="nav-secondary">Calendario actividades</a>
+    <a href="#formulario" class="nav-cta">Solicitar trueque</a>
+  </div>
 </nav>
 
 <!-- STARS (visible over image areas that are very dark) -->
 <div class="stars" id="stars"></div>
+
+<!-- GOOEY SVG FILTER -->
+<svg class="hidden" style="position:absolute;width:0;height:0;" aria-hidden="true">
+  <defs>
+    <filter id="gooey-filter-pixel-trail">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur"/>
+      <feColorMatrix in="blur" type="matrix"
+        values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo"/>
+      <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+    </filter>
+  </defs>
+</svg>
 
 <!-- HERO -->
 <section class="hero" id="inicio">
   <div class="hero-bg-img" id="hero-bg-img"></div>
   <div class="hero-overlay"></div>
   <div class="hero-overlay-radial"></div>
-  <div class="hero-content">
+  <!-- PIXEL TRAIL -->
+  <div id="pixel-trail-wrap" style="position:absolute;inset:0;z-index:1;pointer-events:none;filter:url(#gooey-filter-pixel-trail);">
+    <div id="pixel-trail-grid" style="position:absolute;inset:0;"></div>
+  </div>
+  <div class="hero-content" style="z-index:2;">
     <div class="hero-badge">✦ Programa Trueque 2026</div>
     <h1 class="hero-title">Tu talento es tu<br><em>pasaporte a la naturaleza</em></h1>
-    <p class="hero-sub">Dinamiza uno de nuestros campings con tu arte, tu clase o tu espectáculo. Nosotros ponemos el alojamiento, la naturaleza y el acompañante con el que podrás quedarte. Tú pones la magia.</p>
+    <p class="hero-sub">Anima uno de nuestros campings con tu arte, tu clase o tu espectáculo. Nosotros ponemos el alojamiento, la naturaleza y el acompañante con el que podrás quedarte. Tú pones la magia.</p>
     <div class="hero-btns">
       <a href="#formulario" class="btn-primary">Quiero participar</a>
       <a href="#concepto" class="btn-ghost">Cómo funciona</a>
@@ -489,11 +555,11 @@
     <div class="vs-content">
       <span class="vs-tag">Yoga · Bienestar</span>
       <h3>Conecta cuerpo<br>y naturaleza</h3>
-      <p>Desde una clase de yoga al amanecer hasta una sesión de meditación entre pinos. El camping es tu escenario.</p>
+      <p>Desde una clase de yoga al amanecer hasta una sesión de meditación entre pinos.<br>Tú compartes tu práctica. Nosotros ponemos el alojamiento.</p>
     </div>
   </div>
   <div class="vs-panel">
-    <div class="vs-bg" style="background-image:url('61f33d62a6fd39dca4b8413fe1560f4a.jpg'); background-position: center 40%;"></div>
+    <div class="vs-bg" style="background-image:url('61f33d62a6fd39dca4b8413fe1560f4a.jpg'); background-position: center 70%;"></div>
     <div class="vs-overlay"></div>
     <div class="vs-content">
       <span class="vs-tag">Música · Arte</span>
@@ -522,7 +588,7 @@
       <div class="step reveal reveal-delay-1">
         <div class="step-num">1</div>
         <h3>Cuéntanos qué haces</h3>
-        <p>Rellena el formulario en menos de 3 minutos. Explícanos tu talento, elige fechas y destino.</p>
+        <p>Rellena el formulario en menos de 1 minuto. Explícanos tu talento, elige fechas y destino.</p>
       </div>
       <div class="step reveal reveal-delay-2">
         <div class="step-num">2</div>
@@ -532,7 +598,7 @@
       <div class="step reveal reveal-delay-3">
         <div class="step-num">3</div>
         <h3>Llega y brilla</h3>
-        <p>Disfrutas de tu estancia, haces tu actividad en grupo y te vas con una experiencia que no olvidarás.</p>
+        <p>Disfrutas de tu estancia gratis, haces tu actividad en grupo y te vas con una experiencia que no olvidarás.</p>
       </div>
     </div>
   </div>
@@ -590,9 +656,13 @@
       <!-- STEP 1 -->
       <div class="form-step active" id="step-1">
         <div class="field-group">
-          <label class="field-label">¿Qué eres? <span class="field-hint">Selecciona todo lo que se aplique</span></label>
+          <label class="field-label">¿Cuál es tu trueque? <span class="field-hint">Elige una opción</span></label>
+          <div class="tag-toast" id="tag-toast"><div class="tag-toast-inner"><span class="tag-toast-emoji" id="tag-toast-emoji"></span><span id="tag-toast-text"></span></div></div>
           <div class="tags-grid" id="talent-tags"></div>
-          <div class="error-msg" id="err-tags">Selecciona al menos una opción para continuar.</div>
+          <div id="otro-input-wrap" style="display:none;margin-top:10px;">
+            <input type="text" class="form-input" id="otro-input" placeholder="Cuéntanos qué haces…" maxlength="80">
+          </div>
+          <div class="error-msg" id="err-tags">Selecciona una opción para continuar.</div>
         </div>
         <div class="form-nav">
           <span></span>
@@ -606,7 +676,7 @@
       <!-- STEP 2: DESTINO -->
       <div class="form-step" id="step-2">
         <div class="field-group">
-          <label class="field-label">¿En qué destino te gustaría quedarte? <span class="field-hint">Puedes elegir varios</span></label>
+          <label class="field-label" id="dest-label">¿En qué destino te gustaría quedarte? <span class="field-hint">Puedes elegir varios</span></label>
           <div class="dest-grid" id="dest-grid"></div>
           <div class="error-msg" id="err-dest">Selecciona al menos un destino.</div>
         </div>
@@ -622,12 +692,11 @@
       <!-- STEP 3: ACTIVIDAD + FECHAS -->
       <div class="form-step" id="step-3">
         <div class="field-group">
-          <label class="field-label" id="activity-label">Describe tu actividad</label>
-          <textarea class="form-textarea" id="activity-desc" placeholder="Cuéntanos qué harías en el camping: duración aproximada, qué necesitas, para qué tipo de público es ideal…"></textarea>
-          <div class="error-msg" id="err-activity">Por favor describe tu actividad.</div>
+          <label class="field-label" id="activity-label">Describe tu actividad <span class="field-hint">(opcional)</span></label>
+          <textarea class="form-textarea" id="activity-desc" placeholder="Duración aproximada, qué necesitas, para qué tipo de público es ideal…"></textarea>
         </div>
         <div class="field-group">
-          <label class="field-label">¿Cuándo te interesaría venir? <span class="field-hint">Máximo 2 noches</span></label>
+          <label class="field-label">¿Cuándo te interesaría venir? <span class="field-hint" style="color:#d4a900;font-weight:600;">Máximo 2 noches</span></label>
           <div class="calendar-wrap">
             <div class="cal-header">
               <button class="cal-nav" onclick="calPrev()">&#8592;</button>
@@ -644,6 +713,7 @@
             </div>
           </div>
           <div class="cal-selected-text" id="cal-selected-text"></div>
+          <div class="cal-max-notice" id="cal-max-notice">⚠️ Máximo 2 noches. Por favor elige otro rango.</div>
           <div class="error-msg" id="err-dates">Selecciona al menos la fecha de llegada.</div>
         </div>
         <div class="form-nav">
@@ -657,6 +727,20 @@
 
       <!-- STEP 4 -->
       <div class="form-step" id="step-4">
+        <div class="field-group" id="fg-days">
+          <label class="field-label" id="days-label">¿Cuántas veces te gustaría actuar en tu estancia?</label>
+          <div class="days-selector">
+            <div class="day-opt" data-days="1" onclick="selectDays(1)">
+              <span class="day-num">1</span>
+              <span class="day-label">día</span>
+            </div>
+            <div class="day-opt" data-days="2" onclick="selectDays(2)">
+              <span class="day-num">2</span>
+              <span class="day-label">días</span>
+            </div>
+          </div>
+          <div class="error-msg" id="err-days">Elige cuántos días te gustaría quedarte.</div>
+        </div>
         <div class="form-row">
           <div class="field-group" id="fg-name">
             <label class="field-label">Nombre</label>
@@ -674,9 +758,10 @@
             <label class="field-label">Teléfono <span class="field-hint">(opcional)</span></label>
             <input type="tel" class="form-input" id="contact-phone" placeholder="+34 600 000 000">
           </div>
-          <div class="field-group">
-            <label class="field-label">Instagram / Web <span class="field-hint">(opcional)</span></label>
+          <div class="field-group" id="fg-social">
+            <label class="field-label">Instagram / Web <span class="field-hint" style="color:#d4a900;font-weight:600;">Nos encantaría ver tu talento ✦</span></label>
             <input type="text" class="form-input" id="contact-social" placeholder="@tuusuario o tu web">
+            <div class="error-msg" id="err-social">Añade tu Instagram o web para que podamos ver tu talento.</div>
           </div>
         </div>
         <div class="field-group">
@@ -716,55 +801,81 @@
 </footer>
 
 <script>
+// Para conectar con Google Sheets, despliega un Apps Script como web app y pon la URL aquí:
+const SHEETS_URL = '';
+
 const TALENTS = [
-  {id:'cantante',     icon:'🎤', label:'Cantante'},
-  {id:'yoga',         icon:'🧘', label:'Yoga'},
-  {id:'animador',     icon:'🎪', label:'Animador infantil'},
-  {id:'gymkana',      icon:'🏅', label:'Gymkana'},
-  {id:'pilates',      icon:'🤸', label:'Pilates'},
-  {id:'baile',        icon:'💃', label:'Clase de baile'},
-  {id:'meditacion',   icon:'🌙', label:'Meditación'},
-  {id:'manualidades', icon:'✂️', label:'Taller manualidades'},
-  {id:'pintura',      icon:'🎨', label:'Taller de pintura'},
-  {id:'astronomia',   icon:'🔭', label:'Taller astronomía'},
-  {id:'bingo',        icon:'🎰', label:'Bingo'},
-  {id:'monologo',     icon:'🎭', label:'Monólogo'},
-  {id:'magia',        icon:'🪄', label:'Mago / Magia'},
-  {id:'musico',       icon:'🎸', label:'Músico'},
-  {id:'pintacaras',   icon:'🖌️', label:'Pintacaras'},
-  {id:'teatro',       icon:'🎬', label:'Teatro'},
-  {id:'cocina',       icon:'👨‍🍳', label:'Taller de cocina'},
-  {id:'fotografia',   icon:'📷', label:'Fotografía'},
+  {id:'cantante',     icon:'🎤', label:'Cantante',           verb:'cantar',                    phrase:'Actuarás frente al camping y pondrás la banda sonora de una noche perfecta.'},
+  {id:'yoga',         icon:'🧘', label:'Yoga',               verb:'dar clase de yoga',         phrase:'Guiarás una sesión al aire libre que los campistas recordarán.'},
+  {id:'animador',     icon:'🎪', label:'Animador infantil',  verb:'animar',                    phrase:'Llenarás de energía y risas el camping con los más pequeños.'},
+  {id:'gymkana',      icon:'🏅', label:'Gymkana',            verb:'organizar la gymkana',      phrase:'Organizarás una gymkana épica que animará a toda la familia.'},
+  {id:'pilates',      icon:'🤸', label:'Pilates',            verb:'dar clase de pilates',      phrase:'Llevarás el movimiento y el bienestar al corazón de la naturaleza.'},
+  {id:'baile',        icon:'💃', label:'Clase de baile',     verb:'dar clase de baile',        phrase:'Convertirás el camping en una pista de baile improvisada.'},
+  {id:'meditacion',   icon:'🌙', label:'Meditación',         verb:'meditar',                   phrase:'Crearás momentos de calma y conexión en plena naturaleza.'},
+  {id:'manualidades', icon:'✂️', label:'Taller manualidades',verb:'hacer el taller',           phrase:'Los campistas se irán con algo hecho con sus propias manos.'},
+  {id:'pintura',      icon:'🎨', label:'Taller de pintura',  verb:'pintar',                    phrase:'Transformarás el camping en un atelier al aire libre.'},
+  {id:'astronomia',   icon:'🔭', label:'Taller astronomía',  verb:'hacer el taller',           phrase:'Llevarás el cosmos al camping con una sesión de observación estelar.'},
+  {id:'bingo',        icon:'🎰', label:'Bingo',              verb:'organizar el bingo',        phrase:'Organizarás una noche de bingo que todo el camping esperará.'},
+  {id:'monologo',     icon:'🎭', label:'Monólogo',           verb:'hacer tu monólogo',         phrase:'Harás reír a todo el camping con tu historia y tu humor.'},
+  {id:'magia',        icon:'🪄', label:'Mago / Magia',       verb:'hacer magia',               phrase:'Dejarás a todos con la boca abierta con tus trucos de magia.'},
+  {id:'musico',       icon:'🎸', label:'Músico',             verb:'tocar',                     phrase:'Pondrás la banda sonora perfecta a una noche bajo las estrellas.'},
+  {id:'pintacaras',   icon:'🖌️', label:'Pintacaras',         verb:'pintar caras',              phrase:'Llenarás de arte y color las caras de los más pequeños.'},
+  {id:'teatro',       icon:'🎬', label:'Teatro',             verb:'hacer teatro',              phrase:'Montarás una obra que convertirá el camping en un escenario único.'},
+  {id:'cocina',       icon:'👨‍🍳', label:'Taller de cocina',  verb:'cocinar',                   phrase:'Compartirás tus recetas y sabores con todos.'},
+  {id:'fotografia',   icon:'📷', label:'Fotografía',         verb:'hacer el taller',           phrase:'Enseñarás a ver la belleza del camping con una cámara en mano.'},
+  {id:'otro',         icon:'✨', label:'Otro',               verb:'hacer tu actividad',        phrase:'¡Cuéntanoslo! Si enriquece la experiencia del camping, hay sitio para ti.'},
 ];
 const PROFILES = [
   {icon:'🎤',label:'Cantante'},{icon:'🧘',label:'Yoga'},{icon:'🪄',label:'Mago'},
   {icon:'🎸',label:'Músico'},{icon:'💃',label:'Baile'},{icon:'🎨',label:'Pintura'},
   {icon:'🔭',label:'Astronomía'},{icon:'🎪',label:'Animador'},{icon:'🤸',label:'Pilates'},
   {icon:'🎭',label:'Monólogo'},{icon:'🖌️',label:'Pintacaras'},{icon:'🌙',label:'Meditación'},
-  {icon:'⭐',label:'Otro'},
 ];
 const DESTINATIONS = [
-  {id:'cordoba',   cls:'cordoba',   icon:'🌻', name:'Kampaoh Córdoba',        desc:'Entre olivos y dehesas · Andalucía'},
-  {id:'palmar',    cls:'palmar',    icon:'🏄', name:'Kampaoh El Palmar',      desc:'Junto a la playa atlántica · Cádiz'},
-  {id:'icristina', cls:'icristina', icon:'🌊', name:'Kampaoh Isla Cristina',  desc:'Marismas y mar · Huelva'},
-  {id:'cantabria', cls:'cantabria', icon:'🏔️', name:'Kampaoh Las Arenas',     desc:'Verde Cantabria · Norte'},
-  {id:'vigo',      cls:'vigo',      icon:'⛵', name:'Kampaoh Ría de Vigo',    desc:'Galicia salvaje y marinera'},
-  {id:'trafalgar', cls:'trafalgar', icon:'🌅', name:'Kampaoh Trafalgar',      desc:'Cabo Trafalgar · Cádiz'},
-  {id:'canos',     cls:'canos',     icon:'🌲', name:'Kampaoh Los Caños',      desc:'Parque Natural de la Breña · Cádiz'},
+  {id:'cordoba',   photo:'Kampaoh Córdoba.jpg',      icon:'🌻', name:'Kampaoh Córdoba',       desc:'Entre olivos y dehesas · Andalucía',    avail:'Abierto todo el año'},
+  {id:'palmar',    photo:'Kampaoh El Palmar.jpg',    icon:'🏄', name:'Kampaoh El Palmar',     desc:'Junto a la playa atlántica · Cádiz',    avail:'Abierto todo el año'},
+  {id:'icristina', photo:'Kampaoh Isla Cristina.jpg',icon:'🌊', name:'Kampaoh Isla Cristina', desc:'Marismas y mar · Huelva',               avail:'Abierto todo el año'},
+  {id:'cantabria', photo:'Kampaoh Las Arenas.jpg',   icon:'🏔️', name:'Kampaoh Las Arenas',    desc:'Verde Cantabria · Norte',               avail:'May–Sep'},
+  {id:'vigo',      photo:'Kampaoh Ría de Vigo.jpg',  icon:'⛵', name:'Kampaoh Ría de Vigo',   desc:'Galicia salvaje y marinera',            avail:'May–Sep'},
+  {id:'trafalgar', photo:'Kampaoh Trafalgar.jpg',    icon:'🌅', name:'Kampaoh Trafalgar',     desc:'Cabo Trafalgar · Cádiz',                avail:'Hasta oct'},
+  {id:'canos',     photo:'Kampaoh Los Caños.jpg',    icon:'🌲', name:'Kampaoh Los Caños',     desc:'Parque Natural de la Breña · Cádiz',    avail:'May–oct'},
 ];
+
+/* Per-destination availability */
+function isDestAvail(destId, ds) {
+  const [y, m, day] = ds.split('-').map(Number);
+  const dow = new Date(ds).getDay(); // 0=Sun,6=Sat
+  const isWeekend = dow === 5 || dow === 6 || dow === 0;
+  switch(destId) {
+    case 'cordoba': case 'palmar': case 'icristina': return true;
+    case 'cantabria':
+      if (m === 5) return isWeekend;
+      if (m === 6 && day <= 14) return isWeekend;
+      if ((m === 6 && day >= 15) || m === 7 || m === 8 || (m === 9 && day <= 26)) return true;
+      return false;
+    case 'vigo':
+      if (m === 5) return isWeekend;
+      if (m >= 6 && (m < 9 || (m === 9 && day <= 24))) return true;
+      return false;
+    case 'trafalgar': return m <= 10;
+    case 'canos': return !(m === 5 && day < 15) && m >= 5 && m <= 10;
+    default: return true;
+  }
+}
+function isDateAvail(ds) {
+  if (BLOCKED.has(ds)) return false;
+  if (selectedDests.size === 0) return true;
+  for (const id of selectedDests) { if (isDestAvail(id, ds)) return true; }
+  return false;
+}
 
 function makeBlocked() {
   const s = new Set();
   function r(a, b) { const d=new Date(a),e=new Date(b); while(d<=e){s.add(d.toISOString().slice(0,10));d.setDate(d.getDate()+1);} }
-  // Semana Santa
   r('2026-03-29','2026-04-05');
-  // Puente mayo
   r('2026-05-01','2026-05-03');
-  // Peak agosto
   r('2026-08-01','2026-08-25');
-  // Puente Hispanidad
   r('2026-10-10','2026-10-12');
-  // Fines de semana específicos bloqueados (para mostrar visualmente)
   ['2026-05-09','2026-05-10','2026-05-16','2026-05-17',
    '2026-06-06','2026-06-07','2026-06-20','2026-06-21',
    '2026-07-04','2026-07-05','2026-07-11','2026-07-12',
@@ -776,8 +887,9 @@ function makeBlocked() {
 const BLOCKED = makeBlocked();
 const MONTHS = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
 
-let selectedTalents = new Set(), selectedDests = new Set();
+let selectedTalent = null, selectedDests = new Set();
 let calYear=2026, calMonth=5, rangeStart=null, rangeEnd=null, currentStep=1;
+let selectedDays = null;
 
 /* Hero background subtle parallax */
 const heroBg = document.getElementById('hero-bg-img');
@@ -805,37 +917,62 @@ window.addEventListener('scroll', () => document.getElementById('navbar').classL
 const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), {threshold:.12});
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-/* Profiles */
+/* Profiles - display only, no click */
 (function(){
   const g=document.getElementById('profiles-grid');
   PROFILES.forEach((p,i)=>{
     const el=document.createElement('div');
     el.className='profile-card reveal'+(i<4?' reveal-delay-'+(i+1):'');
     el.innerHTML=`<span class="profile-icon">${p.icon}</span><div class="profile-name">${p.label}</div>`;
-    el.onclick=()=>el.classList.toggle('active');
     g.appendChild(el); obs.observe(el);
   });
 })();
 
-/* Tags */
+/* Tag toast */
+let toastTimer;
+function showTagToast(talent) {
+  const toast = document.getElementById('tag-toast');
+  document.getElementById('tag-toast-emoji').textContent = talent.icon;
+  document.getElementById('tag-toast-text').textContent = talent.phrase;
+  clearTimeout(toastTimer);
+  toast.classList.remove('show');
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    toast.classList.add('show');
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 4000);
+  }));
+}
+
+/* Tags - single select */
 (function(){
   const g=document.getElementById('talent-tags');
   TALENTS.forEach(t=>{
     const el=document.createElement('div'); el.className='tag'; el.dataset.id=t.id;
     el.innerHTML=`<span class="tag-icon">${t.icon}</span>${t.label}`;
     el.onclick=()=>{
-      el.classList.toggle('selected');
-      selectedTalents[el.classList.contains('selected')?'add':'delete'](t.id);
+      const wasSelected = el.classList.contains('selected');
+      g.querySelectorAll('.tag').forEach(x=>x.classList.remove('selected'));
+      selectedTalent = null;
+      document.getElementById('otro-input-wrap').style.display='none';
+      if(!wasSelected){
+        el.classList.add('selected');
+        selectedTalent = t;
+        showTagToast(t);
+        if(t.id==='otro') document.getElementById('otro-input-wrap').style.display='block';
+      }
       document.getElementById('err-tags').classList.remove('show');
-      updateActivityLabel();
+      updateDynamicLabels();
     };
     g.appendChild(el);
   });
 })();
 
-function updateActivityLabel(){
-  const names=TALENTS.filter(t=>selectedTalents.has(t.id)).map(t=>t.label);
-  if(names.length) document.getElementById('activity-label').textContent=`Describe tu actividad como ${names.slice(0,3).join(', ')}`;
+function updateDynamicLabels(){
+  if(!selectedTalent) return;
+  const v = selectedTalent.verb;
+  const lbl = selectedTalent.label;
+  document.getElementById('activity-label').textContent = `Describe tu actividad como ${lbl} (opcional)`;
+  document.getElementById('dest-label').innerHTML = `¿En qué destino te gustaría <strong>${v}</strong>? <span class="field-hint">Puedes elegir varios</span>`;
+  document.getElementById('days-label').textContent = `¿Cuántas veces te gustaría ${v} en tu estancia?`;
 }
 
 /* Destinations */
@@ -843,12 +980,18 @@ function updateActivityLabel(){
   const g=document.getElementById('dest-grid');
   DESTINATIONS.forEach(d=>{
     const el=document.createElement('div'); el.className='dest-card';
+    const photoUrl = encodeURI(d.photo);
     el.innerHTML=`
-      <div class="dest-img ${d.cls}"><span>${d.icon}</span>
+      <div class="dest-img" style="background-image:url('${photoUrl}')">
+        <span>${d.icon}</span>
         <div class="dest-check"><svg viewBox="0 0 14 14"><path d="M2 7l4 4 6-6"/></svg></div>
       </div>
       <div class="dest-body"><h3>${d.name}</h3><p>${d.desc}</p></div>`;
-    el.onclick=()=>{ el.classList.toggle('selected'); selectedDests[el.classList.contains('selected')?'add':'delete'](d.id); document.getElementById('err-dest').classList.remove('show'); };
+    el.onclick=()=>{
+      el.classList.toggle('selected');
+      selectedDests[el.classList.contains('selected')?'add':'delete'](d.id);
+      document.getElementById('err-dest').classList.remove('show');
+    };
     g.appendChild(el);
   });
 })();
@@ -866,7 +1009,7 @@ function renderCalendar(){
     const dt=new Date(calYear,calMonth-1,d);
     const el=document.createElement('div'); el.className='cal-day'; el.textContent=d; el.dataset.date=ds;
     if(dt<today){ el.classList.add('past'); }
-    else if(BLOCKED.has(ds)){ el.classList.add('blocked'); }
+    else if(!isDateAvail(ds)){ el.classList.add('blocked'); }
     else{
       if(rangeStart&&rangeEnd){
         const rs=new Date(rangeStart),re=new Date(rangeEnd);
@@ -881,15 +1024,26 @@ function renderCalendar(){
   updateCalText();
 }
 function pickDate(ds){
+  const notice = document.getElementById('cal-max-notice');
+  notice.classList.remove('show');
   if(!rangeStart||(rangeStart&&rangeEnd)){ rangeStart=ds; rangeEnd=null; }
   else{
     const a=ds<rangeStart?[ds,rangeStart]:[rangeStart,ds];
-    // Max 2 noches (3 días)
-    const diffMs=new Date(a[1])-new Date(a[0]);
-    const diffDays=diffMs/(1000*60*60*24);
-    if(diffDays>2){ rangeStart=ds; rangeEnd=null; renderCalendar(); return; }
+    const diffDays=(new Date(a[1])-new Date(a[0]))/(86400000);
+    if(diffDays>2){
+      notice.classList.add('show');
+      setTimeout(()=>notice.classList.remove('show'),3500);
+      rangeStart=ds; rangeEnd=null; renderCalendar(); return;
+    }
     const tmp=new Date(a[0]),end=new Date(a[1]);
-    while(tmp<=end){ if(BLOCKED.has(tmp.toISOString().slice(0,10))){ rangeEnd=null; alert('El rango incluye fechas no disponibles. Elige otro rango.'); renderCalendar(); return; } tmp.setDate(tmp.getDate()+1); }
+    while(tmp<=end){
+      if(!isDateAvail(tmp.toISOString().slice(0,10))){
+        notice.textContent='⚠️ El rango incluye fechas no disponibles. Elige otro rango.';
+        notice.classList.add('show'); setTimeout(()=>notice.classList.remove('show'),3500);
+        rangeEnd=null; renderCalendar(); return;
+      }
+      tmp.setDate(tmp.getDate()+1);
+    }
     rangeStart=a[0]; rangeEnd=a[1];
   }
   document.getElementById('err-dates').classList.remove('show');
@@ -905,12 +1059,20 @@ function calPrev(){ if(--calMonth<1){calMonth=12;calYear--;} renderCalendar(); }
 function calNext(){ if(++calMonth>12){calMonth=1;calYear++;} renderCalendar(); }
 renderCalendar();
 
+/* Days selector */
+function selectDays(n){
+  selectedDays = n;
+  document.querySelectorAll('.day-opt').forEach(el=>el.classList.toggle('selected', +el.dataset.days===n));
+  document.getElementById('err-days').classList.remove('show');
+}
+
 /* Steps */
 function goStep(n){
   if(n>currentStep&&!validateStep(currentStep)) return;
   document.getElementById('step-'+currentStep).classList.remove('active');
   currentStep=n;
   document.getElementById('step-'+n).classList.add('active');
+  if(n===3){ rangeStart=null; rangeEnd=null; renderCalendar(); }
   updateIndicator();
   document.getElementById('form-wrap').scrollIntoView({behavior:'smooth',block:'start'});
 }
@@ -924,29 +1086,96 @@ function updateIndicator(){
   }
 }
 function validateStep(n){
-  if(n===1){ if(selectedTalents.size===0){document.getElementById('err-tags').classList.add('show');return false;} }
+  if(n===1){ if(!selectedTalent){document.getElementById('err-tags').classList.add('show');return false;} }
   if(n===2){ if(selectedDests.size===0){document.getElementById('err-dest').classList.add('show');return false;} }
-  if(n===3){
-    if(!document.getElementById('activity-desc').value.trim()){document.getElementById('err-activity').classList.add('show');return false;}
-    if(!rangeStart){document.getElementById('err-dates').classList.add('show');return false;}
-  }
+  if(n===3){ if(!rangeStart){document.getElementById('err-dates').classList.add('show');return false;} }
   return true;
 }
 function submitForm(){
   const name=document.getElementById('contact-name').value.trim();
   const email=document.getElementById('contact-email').value.trim();
+  const social=document.getElementById('contact-social').value.trim();
   let ok=true;
+  if(!selectedDays){document.getElementById('err-days').classList.add('show');ok=false;}
   if(!name){document.getElementById('err-name').classList.add('show');document.getElementById('fg-name').classList.add('has-error');ok=false;}
   else{document.getElementById('err-name').classList.remove('show');document.getElementById('fg-name').classList.remove('has-error');}
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){document.getElementById('err-email').classList.add('show');document.getElementById('fg-email').classList.add('has-error');ok=false;}
   else{document.getElementById('err-email').classList.remove('show');document.getElementById('fg-email').classList.remove('has-error');}
+  if(!social){document.getElementById('err-social').classList.add('show');document.getElementById('fg-social').classList.add('has-error');ok=false;}
+  else{document.getElementById('err-social').classList.remove('show');document.getElementById('fg-social').classList.remove('has-error');}
   if(!ok) return;
-  console.log('Trueque payload:',{talents:[...selectedTalents].join(', '),activity:document.getElementById('activity-desc').value,dateFrom:rangeStart,dateTo:rangeEnd||rangeStart,destinations:[...selectedDests].join(', '),name,email});
+
+  const payload = {
+    fecha: new Date().toISOString(),
+    talento: selectedTalent ? (selectedTalent.id==='otro' ? document.getElementById('otro-input').value : selectedTalent.label) : '',
+    descripcion: document.getElementById('activity-desc').value,
+    destinos: [...selectedDests].join(', '),
+    llegada: rangeStart||'',
+    salida: rangeEnd||rangeStart||'',
+    dias: selectedDays,
+    nombre: name,
+    email,
+    telefono: document.getElementById('contact-phone').value.trim(),
+    igweb: social,
+    extra: document.getElementById('contact-extra').value.trim(),
+  };
+
+  if(SHEETS_URL) {
+    fetch(SHEETS_URL, {method:'POST', body: JSON.stringify(payload)})
+      .catch(()=>{});
+  } else {
+    console.log('Trueque payload:', payload);
+  }
+
   document.querySelectorAll('.form-step').forEach(s=>s.classList.remove('active'));
   document.getElementById('steps-indicator').style.display='none';
   document.getElementById('form-header').style.display='none';
   document.getElementById('form-success').classList.add('show');
 }
+
+/* Pixel Trail */
+(function(){
+  const hero = document.querySelector('.hero');
+  const grid = document.getElementById('pixel-trail-grid');
+  if (!hero || !grid) return;
+
+  const FADE = 650;
+  let cols, rows, pixels = [], pxSize;
+
+  function buildGrid() {
+    const w = hero.offsetWidth, h = hero.offsetHeight;
+    pxSize = window.innerWidth < 768 ? 24 : 32;
+    cols = Math.ceil(w / pxSize);
+    rows = Math.ceil(h / pxSize);
+    grid.innerHTML = '';
+    pixels = [];
+    grid.style.cssText = `position:absolute;inset:0;display:grid;grid-template-columns:repeat(${cols},${pxSize}px);grid-template-rows:repeat(${rows},${pxSize}px);width:${cols*pxSize}px;height:${rows*pxSize}px;`;
+    for (let i = 0; i < cols * rows; i++) {
+      const px = document.createElement('div');
+      px.style.cssText = `width:${pxSize}px;height:${pxSize}px;border-radius:${Math.round(pxSize*.2)}px;background:rgba(255,255,255,0);`;
+      grid.appendChild(px);
+      pixels.push(px);
+    }
+  }
+
+  hero.addEventListener('mousemove', e => {
+    const r = hero.getBoundingClientRect();
+    const col = Math.floor((e.clientX - r.left) / pxSize);
+    const row = Math.floor((e.clientY - r.top) / pxSize);
+    if (col < 0 || col >= cols || row < 0 || row >= rows) return;
+    const px = pixels[row * cols + col];
+    if (!px) return;
+    px.style.transition = 'none';
+    px.style.background = 'rgba(255,255,255,0.9)';
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      px.style.transition = `background ${FADE}ms ease-out`;
+      px.style.background = 'rgba(255,255,255,0)';
+    }));
+  });
+
+  buildGrid();
+  let t; window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(buildGrid, 150); });
+})();
 </script>
 </body>
 </html>

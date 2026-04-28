@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calendario de Actividades — Trueque Kampaoh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100;200;300;400;500;600;700;800;900&family=Lora:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  :root {
+    --bg-0:#000;--bg-1:#0f0f0f;--bg-2:#171717;--bg-card:#1e1e1e;
+    --border:rgba(255,255,255,.08);--border-h:rgba(255,255,255,.18);
+    --text-1:#f2f2f2;--text-2:#a0a0a0;--text-3:#606060;
+    --yellow:#F5C800;--yellow-dark:#d4a900;--orange:#E76F51;
+    --radius:16px;--radius-sm:8px;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Geist',sans-serif;background:var(--bg-1);color:var(--text-1);overflow-x:hidden;}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:16px 40px;background:rgba(0,0,0,.92);box-shadow:0 1px 0 var(--border);backdrop-filter:blur(12px);}
+  .nav-logo{display:flex;align-items:center;text-decoration:none;}
+  .nav-logo img{width:48px;height:48px;object-fit:contain;}
+  .nav-links{display:flex;align-items:center;gap:10px;}
+  .nav-cta{background:var(--yellow);color:#000;border:none;border-radius:50px;padding:10px 22px;font-family:'Geist',sans-serif;font-weight:700;font-size:.88rem;cursor:pointer;transition:all .2s;text-decoration:none;}
+  .nav-cta:hover{background:var(--yellow-dark);transform:translateY(-1px);}
+  .nav-back{color:rgba(255,255,255,.75);font-size:.83rem;font-weight:500;text-decoration:none;padding:9px 18px;border-radius:50px;border:1px solid rgba(255,255,255,.22);transition:all .2s;}
+  .nav-back:hover{color:#fff;border-color:rgba(255,255,255,.55);}
+
+  /* DEMO BANNER */
+  .demo-banner{background:linear-gradient(90deg,rgba(245,200,0,.15),rgba(245,200,0,.08));border-bottom:1px solid rgba(245,200,0,.3);text-align:center;padding:12px 24px;font-size:.82rem;color:var(--yellow);font-weight:600;letter-spacing:.5px;margin-top:80px;}
+  .demo-banner span{opacity:.7;font-weight:400;margin-left:8px;}
+
+  /* PAGE HEADER */
+  .page-header{padding:56px 24px 40px;text-align:center;background:linear-gradient(180deg,var(--bg-0) 0%,var(--bg-1) 100%);}
+  .section-label{display:inline-flex;align-items:center;gap:10px;color:var(--yellow);font-weight:600;font-size:.78rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;}
+  .section-label::before{content:'';width:24px;height:1.5px;background:var(--yellow);border-radius:2px;opacity:.6;}
+  h1.page-title{font-size:clamp(1.9rem,5vw,3.2rem);font-weight:800;letter-spacing:-.04em;margin-bottom:12px;}
+  h1.page-title em{font-family:'Lora',serif;font-style:italic;font-weight:400;color:var(--yellow);}
+  .page-sub{color:var(--text-2);font-size:.97rem;font-weight:300;line-height:1.7;max-width:520px;margin:0 auto;}
+
+  /* FILTERS */
+  .filters-bar{max-width:1200px;margin:0 auto 28px;padding:0 24px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+  .filter-btn{padding:7px 16px;border-radius:50px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-2);font-size:.82rem;font-weight:500;cursor:pointer;transition:all .2s;font-family:'Geist',sans-serif;}
+  .filter-btn:hover,.filter-btn.active{border-color:var(--yellow);color:var(--yellow);background:rgba(245,200,0,.08);}
+
+  /* MOBILE TABS */
+  .view-tabs{display:none;max-width:1200px;margin:0 auto 20px;padding:0 24px;}
+  .view-tabs-inner{display:flex;background:var(--bg-card);border:1px solid var(--border);border-radius:50px;padding:4px;gap:4px;}
+  .view-tab{flex:1;text-align:center;padding:9px 16px;border-radius:50px;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .2s;color:var(--text-2);border:none;background:transparent;font-family:'Geist',sans-serif;}
+  .view-tab.active{background:var(--yellow);color:#000;}
+
+  /* MAIN GRID: calendar + map */
+  .main-grid{max-width:1200px;margin:0 auto 48px;padding:0 24px;display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;}
+  @media(max-width:900px){
+    .main-grid{grid-template-columns:1fr;}
+    .view-tabs{display:block;}
+    .main-grid > *{display:none;}
+    .main-grid > .panel-active{display:block;}
+  }
+
+  /* ACTIVITY CALENDAR */
+  .act-cal-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+  .act-cal-header{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid var(--border);}
+  .act-cal-header h3{font-size:1rem;font-weight:700;letter-spacing:-.02em;}
+  .cal-nav-btn{background:transparent;border:1px solid var(--border);color:var(--text-2);cursor:pointer;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .2s;font-size:1rem;}
+  .cal-nav-btn:hover{border-color:var(--yellow);color:var(--text-1);}
+  .act-cal-weekdays{display:grid;grid-template-columns:repeat(7,1fr);text-align:center;font-size:.68rem;font-weight:600;color:var(--text-3);text-transform:uppercase;padding:10px 8px 6px;border-bottom:1px solid var(--border);}
+  .act-cal-days{display:grid;grid-template-columns:repeat(7,1fr);padding:8px;gap:3px;}
+  .acd{aspect-ratio:1;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:.82rem;color:var(--text-2);position:relative;cursor:default;}
+  .acd.has-acts{color:var(--text-1);cursor:pointer;}
+  .acd.has-acts:hover{background:rgba(255,255,255,.06);}
+  .acd.today{color:var(--yellow);font-weight:700;}
+  .acd.selected-day{background:rgba(245,200,0,.12);border:1px solid rgba(245,200,0,.4);}
+  .acd.empty{pointer-events:none;}
+  .acd-dots{display:flex;gap:2px;justify-content:center;margin-top:3px;min-height:6px;}
+  .acd-dot{width:5px;height:5px;border-radius:50%;}
+
+  /* Legend */
+  .cal-legend-row{display:flex;flex-wrap:wrap;gap:12px;padding:12px 16px;border-top:1px solid var(--border);font-size:.73rem;color:var(--text-2);}
+  .cal-legend-item{display:flex;align-items:center;gap:5px;}
+  .cal-legend-dot{width:9px;height:9px;border-radius:50%;}
+
+  /* Date panel below calendar */
+  .date-panel{margin-top:4px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;min-height:60px;display:none;}
+  .date-panel.show{display:block;}
+  .date-panel h4{font-size:.9rem;font-weight:700;color:var(--text-1);margin-bottom:12px;}
+  .date-act-item{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);}
+  .date-act-item:last-child{border-bottom:none;padding-bottom:0;}
+  .dai-icon{font-size:1.3rem;flex-shrink:0;}
+  .dai-name{font-size:.88rem;font-weight:700;color:var(--text-1);}
+  .dai-sub{font-size:.78rem;color:var(--text-2);margin-top:2px;}
+  .dai-ig{font-size:.76rem;color:var(--yellow);margin-top:4px;text-decoration:none;display:inline-block;}
+  .dai-ig:hover{opacity:.8;}
+
+  /* MAP */
+  .map-wrap{border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);height:460px;position:relative;}
+  #map{height:100%;width:100%;}
+
+  /* CAMPINGS */
+  .campings-wrap{max-width:1200px;margin:0 auto;padding:0 24px 96px;}
+  .camping-block{margin-bottom:52px;}
+  .camping-header{display:flex;align-items:center;gap:14px;margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(--border);}
+  .camping-photo{width:52px;height:52px;border-radius:10px;object-fit:cover;flex-shrink:0;border:1px solid var(--border);}
+  .camping-header h2{font-size:1.2rem;font-weight:700;letter-spacing:-.02em;}
+  .camping-header p{color:var(--text-2);font-size:.82rem;margin-top:2px;}
+
+  /* Activity cards */
+  .acts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px;}
+  .act-card{background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius);padding:22px 18px;transition:transform .25s,border-color .25s;}
+  .act-card:hover{transform:translateY(-4px);border-color:var(--border-h);}
+  .act-card.dim{opacity:.35;}
+  .act-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;gap:8px;}
+  .act-icon{font-size:1.7rem;}
+  .act-type{border-radius:50px;font-size:.68rem;font-weight:700;padding:3px 10px;letter-spacing:.5px;text-transform:uppercase;white-space:nowrap;border:1px solid;}
+  .act-name{font-size:.97rem;font-weight:700;margin-bottom:4px;letter-spacing:-.02em;}
+  .act-meta{color:var(--text-2);font-size:.81rem;line-height:1.55;}
+  .act-dates{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px;}
+  .act-date{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:6px;padding:3px 9px;font-size:.74rem;color:var(--text-2);}
+  .act-links{display:flex;gap:10px;margin-top:14px;padding-top:12px;border-top:1px solid var(--border);}
+  .act-link{display:inline-flex;align-items:center;gap:5px;color:var(--text-2);font-size:.79rem;text-decoration:none;transition:color .2s;}
+  .act-link:hover{color:var(--yellow);}
+
+  .empty-state{text-align:center;padding:40px 24px;color:var(--text-3);}
+  .empty-state p{font-size:.9rem;line-height:1.7;}
+
+  /* Footer */
+  footer{background:var(--bg-0);border-top:1px solid var(--border);color:var(--text-3);padding:48px 24px;text-align:center;}
+  footer a{color:var(--text-2);text-decoration:none;transition:color .2s;}
+  footer a:hover{color:var(--yellow);}
+  .footer-logo img{width:64px;height:64px;object-fit:contain;margin-bottom:16px;}
+  .footer-links{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin:16px 0;font-size:.88rem;}
+  .footer-copy{font-size:.78rem;}
+
+  @media(max-width:768px){
+    nav{padding:12px 20px;}
+    .page-header{padding:40px 20px 28px;}
+    .map-wrap{height:280px;}
+    .camping-header{flex-wrap:wrap;}
+  }
+
+  /* Leaflet dark */
+  .leaflet-tile{filter:brightness(.65) saturate(.7);}
+  .leaflet-popup-content-wrapper{background:#1e1e1e;color:#f2f2f2;border:1px solid rgba(255,255,255,.1);border-radius:10px;box-shadow:0 8px 32px rgba(0,0,0,.6);}
+  .leaflet-popup-tip{background:#1e1e1e;}
+  .leaflet-popup-content{font-family:'Geist',sans-serif;font-size:.88rem;}
+  .leaflet-popup-content strong{color:#F5C800;}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><img src="Sello-fondo_amarillo-13.png" alt="Kampaoh"></a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-back">← Volver</a>
+    <a href="index.html#formulario" class="nav-cta">Solicitar trueque</a>
+  </div>
+</nav>
+
+<div class="demo-banner">✦ MODO DEMO <span>— Estas actividades son de ejemplo para mostrar cómo quedará el calendario</span></div>
+
+<div class="page-header">
+  <span class="section-label">Programa Trueque 2026</span>
+  <h1 class="page-title">Calendario de <em>actividades</em></h1>
+  <p class="page-sub">Descubre qué artistas y talentos vienen a cada camping. Vive una experiencia diferente.</p>
+</div>
+
+<div class="filters-bar" id="filters-bar">
+  <button class="filter-btn active" data-filter="all" onclick="filterActivities('all',this)">Todos</button>
+  <button class="filter-btn" data-filter="música" onclick="filterActivities('música',this)">🎤 Música</button>
+  <button class="filter-btn" data-filter="bienestar" onclick="filterActivities('bienestar',this)">🧘 Bienestar</button>
+  <button class="filter-btn" data-filter="magia" onclick="filterActivities('magia',this)">🪄 Magia</button>
+  <button class="filter-btn" data-filter="arte" onclick="filterActivities('arte',this)">🎨 Arte</button>
+  <button class="filter-btn" data-filter="infantil" onclick="filterActivities('infantil',this)">🎪 Infantil</button>
+</div>
+
+<!-- MOBILE VIEW TABS -->
+<div class="view-tabs">
+  <div class="view-tabs-inner">
+    <button class="view-tab active" onclick="switchView('cal',this)">📅 Calendario</button>
+    <button class="view-tab" onclick="switchView('map',this)">🗺️ Mapa</button>
+  </div>
+</div>
+
+<!-- CALENDAR + MAP SIDE BY SIDE -->
+<div class="main-grid">
+  <!-- ACTIVITY CALENDAR -->
+  <div class="panel-active" id="panel-cal">
+    <div class="act-cal-wrap">
+      <div class="act-cal-header">
+        <button class="cal-nav-btn" onclick="calNav(-1)">←</button>
+        <h3 id="act-cal-title"></h3>
+        <button class="cal-nav-btn" onclick="calNav(1)">→</button>
+      </div>
+      <div class="act-cal-weekdays">
+        <span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span><span>D</span>
+      </div>
+      <div class="act-cal-days" id="act-cal-days"></div>
+      <div class="cal-legend-row" id="act-cal-legend"></div>
+    </div>
+    <div class="date-panel" id="date-panel">
+      <h4 id="date-panel-title"></h4>
+      <div id="date-panel-content"></div>
+    </div>
+  </div>
+
+  <!-- MAP -->
+  <div id="panel-map">
+    <div class="map-wrap"><div id="map"></div></div>
+  </div>
+</div>
+
+<!-- CAMPINGS & ACTIVITIES -->
+<div class="campings-wrap" id="campings-wrap"></div>
+
+<footer>
+  <div class="footer-logo"><img src="Sello-fondo_amarillo-13.png" alt="Kampaoh"></div>
+  <p style="font-size:.88rem;max-width:440px;margin:0 auto 16px;">Camping, fácil y bonito. Más de 20 destinos en España, Portugal e Italia.</p>
+  <div class="footer-links">
+    <a href="https://es.kampaoh.com">Web</a>
+    <a href="index.html">Trueque</a>
+    <a href="https://es.kampaoh.com/destinos/">Destinos</a>
+  </div>
+  <p class="footer-copy">© 2026 Kampaoh · Programa Trueque</p>
+</footer>
+
+<script>
+const CAMPINGS = [
+  {id:'cordoba',   name:'Kampaoh Córdoba',      photo:'Kampaoh Córdoba.jpg',       desc:'Entre olivos y dehesas · Andalucía',    lat:37.96122,lng:-4.81200},
+  {id:'palmar',    name:'Kampaoh El Palmar',     photo:'Kampaoh El Palmar.jpg',     desc:'Junto a la playa atlántica · Cádiz',    lat:36.23448,lng:-6.05952},
+  {id:'icristina', name:'Kampaoh Isla Cristina', photo:'Kampaoh Isla Cristina.jpg', desc:'Marismas y mar · Huelva',               lat:37.20026,lng:-7.30112},
+  {id:'cantabria', name:'Kampaoh Las Arenas',    photo:'Kampaoh Las Arenas.jpg',    desc:'Verde Cantabria · Norte',               lat:43.39146,lng:-4.51065},
+  {id:'vigo',      name:'Kampaoh Ría de Vigo',   photo:'Kampaoh Ría de Vigo.jpg',   desc:'Galicia salvaje y marinera',            lat:42.26937,lng:-8.75226},
+  {id:'trafalgar', name:'Kampaoh Trafalgar',     photo:'Kampaoh Trafalgar.jpg',     desc:'Cabo Trafalgar · Cádiz',                lat:36.19047,lng:-6.02651},
+  {id:'canos',     name:'Kampaoh Los Caños',     photo:'Kampaoh Los Caños.jpg',     desc:'Parque Natural de la Breña · Cádiz',    lat:36.18905,lng:-6.01415},
+];
+
+const TYPE_COLOR = {
+  'música':   '#F5C800',
+  'bienestar':'#74C69D',
+  'magia':    '#a78bfa',
+  'arte':     '#E76F51',
+  'infantil': '#f9a8d4',
+};
+
+const DEMO_ACTS = [
+  {camping:'cordoba',   icon:'🎤', name:'Laura Sánchez',    type:'música',    desc:'Cantautora folk con tres álbumes. Actuación íntima junto al olivo centenario.',      dates:['2026-06-14','2026-06-15'], ig:'@laurasanchezmusic', web:''},
+  {camping:'cordoba',   icon:'🧘', name:'Pau Morales',      type:'bienestar', desc:'Instructor de yoga Vinyasa. Sesión al amanecer entre olivares para todos los niveles.',dates:['2026-06-21','2026-06-22'], ig:'@paumoralesyoga',    web:''},
+  {camping:'palmar',    icon:'🪄', name:'Mago Iván',        type:'magia',     desc:'Espectáculo de close-up magic y mentalismo para toda la familia. 45 min.',           dates:['2026-07-05','2026-07-06'], ig:'',                   web:'www.magoivan.es'},
+  {camping:'palmar',    icon:'🎸', name:'The Wild Strings',  type:'música',    desc:'Dúo de guitarra y voz. Covers acústicos y temas propios junto a la playa.',          dates:['2026-07-12'],              ig:'@thewildstrings',    web:''},
+  {camping:'icristina', icon:'🎨', name:'Marta Blanco',     type:'arte',      desc:'Taller de acuarela al natural. Pintamos atardeceres de marisma. Para principiantes.',  dates:['2026-07-19','2026-07-20'], ig:'@martablancoarte',   web:''},
+  {camping:'cantabria', icon:'🎪', name:'Troupe Lunática',  type:'infantil',  desc:'Animación infantil con teatro de títeres, malabares y pintacaras. 2 sesiones.',       dates:['2026-08-02','2026-08-03'], ig:'@troupelunatica',    web:''},
+  {camping:'vigo',      icon:'🧘', name:'Sofía Ríos',       type:'bienestar', desc:'Retiro de meditación mindfulness. Sesiones matutinas con vistas a la ría.',           dates:['2026-08-09','2026-08-10'], ig:'@sofiariosmedita',   web:''},
+  {camping:'trafalgar', icon:'🎤', name:'Carlos Vela',      type:'música',    desc:'Músico flamenco. Una noche de palmas, cante y guitarra bajo las estrellas.',          dates:['2026-08-15'],              ig:'@carlosvelaflamenco',web:''},
+  {camping:'canos',     icon:'🔭', name:'Astro Los Caños',  type:'arte',      desc:'Taller de astronomía con telescopio. Observación guiada del cielo de Cádiz. Aforo 20.',dates:['2026-08-22','2026-08-23'], ig:'',                   web:'www.astroloscanios.com'},
+];
+
+const MONTHS_ES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+let calYear = 2026, calMonth = 6, activeFilter = 'all', selectedDate = null;
+
+/* ---- CALENDAR ---- */
+function renderActCal() {
+  document.getElementById('act-cal-title').textContent = `${MONTHS_ES[calMonth-1]} ${calYear}`;
+  const grid = document.getElementById('act-cal-days');
+  grid.innerHTML = '';
+  const today = new Date(); today.setHours(0,0,0,0);
+
+  // Build a map: date string → [acts]
+  const dateMap = {};
+  DEMO_ACTS.forEach(a => {
+    if (activeFilter !== 'all' && a.type !== activeFilter) return;
+    a.dates.forEach(d => {
+      if (!dateMap[d]) dateMap[d] = [];
+      dateMap[d].push(a);
+    });
+  });
+
+  let dow = new Date(calYear, calMonth-1, 1).getDay();
+  dow = dow === 0 ? 6 : dow - 1;
+  const dim = new Date(calYear, calMonth, 0).getDate();
+
+  for (let i = 0; i < dow; i++) {
+    const e = document.createElement('div'); e.className = 'acd empty'; grid.appendChild(e);
+  }
+  for (let d = 1; d <= dim; d++) {
+    const ds = `${calYear}-${String(calMonth).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const el = document.createElement('div');
+    el.className = 'acd';
+    const dt = new Date(calYear, calMonth-1, d);
+    if (dt.toDateString() === today.toDateString()) el.classList.add('today');
+    if (ds === selectedDate) el.classList.add('selected-day');
+
+    const acts = dateMap[ds] || [];
+    const dotsHtml = acts.slice(0,3).map(a => `<span class="acd-dot" style="background:${TYPE_COLOR[a.type]||'#F5C800'}"></span>`).join('');
+    el.innerHTML = `<span>${d}</span><div class="acd-dots">${dotsHtml}</div>`;
+
+    if (acts.length > 0) {
+      el.classList.add('has-acts');
+      el.onclick = () => selectCalDay(ds, acts);
+    }
+    grid.appendChild(el);
+  }
+
+  // Legend
+  const usedTypes = [...new Set(DEMO_ACTS.filter(a => activeFilter === 'all' || a.type === activeFilter).map(a => a.type))];
+  const legend = document.getElementById('act-cal-legend');
+  legend.innerHTML = usedTypes.map(t => `<div class="cal-legend-item"><span class="cal-legend-dot" style="background:${TYPE_COLOR[t]}"></span>${t}</div>`).join('');
+}
+
+function selectCalDay(ds, acts) {
+  selectedDate = ds === selectedDate ? null : ds;
+  renderActCal();
+  const panel = document.getElementById('date-panel');
+  if (!selectedDate) { panel.classList.remove('show'); return; }
+
+  const [y,m,d] = ds.split('-').map(Number);
+  document.getElementById('date-panel-title').textContent = `${d} ${MONTHS_ES[m-1]} ${y}`;
+  document.getElementById('date-panel-content').innerHTML = acts.map(a => {
+    const camp = CAMPINGS.find(c => c.id === a.camping);
+    const igHtml = a.ig ? `<a class="dai-ig" href="https://instagram.com/${a.ig.replace('@','')}" target="_blank">📷 ${a.ig}</a>`
+                 : a.web ? `<a class="dai-ig" href="https://${a.web}" target="_blank">🌐 ${a.web}</a>` : '';
+    return `<div class="date-act-item">
+      <span class="dai-icon">${a.icon}</span>
+      <div>
+        <div class="dai-name">${a.name}</div>
+        <div class="dai-sub">${camp ? camp.name : ''} · ${a.type}</div>
+        ${igHtml}
+      </div>
+    </div>`;
+  }).join('');
+  panel.classList.add('show');
+
+  // Also highlight matching camping blocks
+  filterActivities(activeFilter, document.querySelector(`.filter-btn[data-filter="${activeFilter}"]`), true);
+  highlightDate(ds);
+}
+
+function highlightDate(ds) {
+  document.querySelectorAll('.act-card').forEach(card => {
+    const dates = card.dataset.dates ? card.dataset.dates.split(',') : [];
+    card.classList.toggle('dim', !dates.includes(ds));
+  });
+}
+
+function calNav(dir) {
+  calMonth += dir;
+  if (calMonth > 12) { calMonth = 1; calYear++; }
+  if (calMonth < 1)  { calMonth = 12; calYear--; }
+  selectedDate = null;
+  document.getElementById('date-panel').classList.remove('show');
+  document.querySelectorAll('.act-card').forEach(c => c.classList.remove('dim'));
+  renderActCal();
+}
+
+/* ---- FILTERS ---- */
+function filterActivities(filter, btn, keepDate) {
+  activeFilter = filter;
+  if (btn) { document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); }
+  if (!keepDate) { selectedDate = null; document.getElementById('date-panel').classList.remove('show'); }
+  renderActCal();
+  renderCampings();
+}
+
+/* ---- CAMPINGS LIST ---- */
+function renderCampings() {
+  const wrap = document.getElementById('campings-wrap');
+  wrap.innerHTML = '';
+  CAMPINGS.forEach(c => {
+    const acts = DEMO_ACTS.filter(a => a.camping === c.id && (activeFilter === 'all' || a.type === activeFilter));
+    if (acts.length === 0 && activeFilter !== 'all') return;
+    const block = document.createElement('div');
+    block.className = 'camping-block'; block.id = 'camp-' + c.id;
+    block.innerHTML = `
+      <div class="camping-header">
+        <img class="camping-photo" src="${encodeURI(c.photo)}" alt="${c.name}" onerror="this.style.display='none'">
+        <div><h2>${c.name}</h2><p>${c.desc}</p></div>
+      </div>
+      ${acts.length > 0
+        ? `<div class="acts-grid">${acts.map(actCard).join('')}</div>`
+        : `<div class="empty-state"><p>Sin actividades programadas con este filtro.<br><a href="index.html#formulario" style="color:var(--yellow);text-decoration:none;">¿Eres tú? Solicita tu trueque →</a></p></div>`}
+    `;
+    wrap.appendChild(block);
+  });
+}
+
+function actCard(a) {
+  const links = [];
+  if (a.ig) links.push(`<a class="act-link" href="https://instagram.com/${a.ig.replace('@','')}" target="_blank">📷 ${a.ig}</a>`);
+  if (a.web) links.push(`<a class="act-link" href="https://${a.web}" target="_blank">🌐 ${a.web}</a>`);
+  const typeColor = TYPE_COLOR[a.type] || '#F5C800';
+  const datesStr = a.dates.join(',');
+  const datesHtml = a.dates.map(d => {
+    const [y,m,day] = d.split('-').map(Number);
+    return `<span class="act-date">📅 ${day} ${MONTHS_ES[m-1]}</span>`;
+  }).join('');
+  return `<div class="act-card" data-type="${a.type}" data-dates="${datesStr}">
+    <div class="act-top">
+      <span class="act-icon">${a.icon}</span>
+      <span class="act-type" style="color:${typeColor};border-color:${typeColor}33;background:${typeColor}15">${a.type}</span>
+    </div>
+    <div class="act-name">${a.name}</div>
+    <div class="act-meta">${a.desc}</div>
+    <div class="act-dates">${datesHtml}</div>
+    ${links.length ? `<div class="act-links">${links.join('')}</div>` : ''}
+  </div>`;
+}
+
+/* ---- MAP ---- */
+const map = L.map('map', {zoomControl:true, scrollWheelZoom:false}).setView([39.5,-4.5],5);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution:'© OpenStreetMap', maxZoom:18}).addTo(map);
+
+const yellowIcon = L.divIcon({
+  html:`<div style="width:28px;height:28px;background:#F5C800;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:3px solid #000;box-shadow:0 2px 8px rgba(0,0,0,.5);"></div>`,
+  iconSize:[28,28], iconAnchor:[14,28], popupAnchor:[0,-30], className:''
+});
+
+CAMPINGS.forEach(c => {
+  const actCount = DEMO_ACTS.filter(a => a.camping === c.id).length;
+  L.marker([c.lat, c.lng], {icon: yellowIcon}).addTo(map)
+    .bindPopup(`<strong>${c.name}</strong><br><span style="color:#a0a0a0;font-size:.8rem;">${c.desc}</span><br><br><a href="#camp-${c.id}" style="color:#F5C800;font-size:.82rem;">${actCount} actividad${actCount!==1?'es':''} · Ver →</a>`)
+    .on('click', () => setTimeout(() => {
+      const el = document.getElementById('camp-' + c.id);
+      if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+    }, 300));
+});
+
+/* Mobile view switcher */
+function switchView(view, btn) {
+  document.querySelectorAll('.view-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const calPanel = document.getElementById('panel-cal');
+  const mapPanel = document.getElementById('panel-map');
+  if (view === 'cal') {
+    calPanel.classList.add('panel-active');
+    mapPanel.classList.remove('panel-active');
+  } else {
+    mapPanel.classList.add('panel-active');
+    calPanel.classList.remove('panel-active');
+    setTimeout(() => map.invalidateSize(), 50);
+  }
+}
+
+renderActCal();
+renderCampings();
+</script>
+</body>
+</html>
